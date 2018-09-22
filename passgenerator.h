@@ -7,11 +7,11 @@ class PassGenerator
 {
 public:
     PassGenerator();
-    QString GeneratePass(QString& masterPhrase, QString& webSiteName);
+    QString GeneratePass(QString &masterPhrase, QString &webSiteName);
 
 private:
-    void CreateWord();
-    void Humanize();
+    void CreateWord(QString &out, quint64 num);
+    void Humanize(QString &in, QString &out);
 
 
 };
