@@ -24,10 +24,12 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        widget.cpp
+        widget.cpp \
+    passgenerator.cpp
 
 HEADERS += \
-        widget.h
+        widget.h \
+    passgenerator.h
 
 CONFIG += mobility
 MOBILITY = 
