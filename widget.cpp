@@ -21,8 +21,8 @@ Widget::Widget(QWidget *parent)
     QLineEdit* qledResult  = new QLineEdit;
     qlblResult->setBuddy(qledResult);
 
-    QPushButton* qbtnGenerate = new QPushButton("Generate");
-    QPushButton* qbtnGenCopy = new QPushButton("Generate and copy");
+    QPushButton* qbtnGenerate = new QPushButton("Generate\n[Enter]");
+    QPushButton* qbtnGenCopy = new QPushButton("Generate and copy\n[Ctrl+Enter]");
 
     QHBoxLayout* buttonLayout = new QHBoxLayout;
     buttonLayout->addWidget(qbtnGenerate);
