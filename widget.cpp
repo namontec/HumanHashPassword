@@ -8,6 +8,9 @@ Widget::Widget(QWidget *parent)
     qlblMaster->setBuddy(qledMaster);
     qledMaster->setEchoMode(QLineEdit::Password);
 
+    QHBoxLayout* hbMasterLayout = new QHBoxLayout;
+
+
     QLabel* qlblConfirm = new QLabel("&Confirm");
     QLineEdit* qledConfirm = new QLineEdit;
     qlblConfirm->setBuddy(qledConfirm);
