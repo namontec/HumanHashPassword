@@ -249,7 +249,7 @@ void PassGenerator::CreateWord(QString &out, quint64 num)
       out += "-";
       int number = num % 1000L;
       num /= 1000;
-      out += QVariant(num).toString();
+      out += QString::number(number);
       continue;
     }
     if (!ary || !ary->size()) {
