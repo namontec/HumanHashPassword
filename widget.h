@@ -3,6 +3,7 @@
 
 //#include <QWidget>
 #include <QtWidgets>
+#include "qlabelcounter.h"
 
 class Widget : public QWidget
 {
@@ -11,6 +12,7 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = 0);
     ~Widget();
+
 };
 
 #endif // WIDGET_H

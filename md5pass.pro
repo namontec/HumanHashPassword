@@ -25,11 +25,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         widget.cpp \
-    passgenerator.cpp
+    passgenerator.cpp \
+    qlabelcounter.cpp
 
 HEADERS += \
         widget.h \
-    passgenerator.h
+    passgenerator.h \
+    qlabelcounter.h
 
 CONFIG += mobility
 MOBILITY = 

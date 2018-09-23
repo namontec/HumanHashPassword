@@ -5,10 +5,14 @@ Widget::Widget(QWidget *parent)
 {
     QLabel* qlblMaster  = new QLabel("&Master phrase");
     QLineEdit* qledMaster  = new QLineEdit;
+    QLabelCounter* qlblMasterCount = new QLabelCounter();
     qlblMaster->setBuddy(qledMaster);
     qledMaster->setEchoMode(QLineEdit::Password);
+    connect(qledMaster, SIGNAL(textChanged(QString)), qlblMasterCount ,SLOT(setCount(QString)) );
 
     QHBoxLayout* hbMasterLayout = new QHBoxLayout;
+    hbMasterLayout->addWidget(qledMaster);
+    hbMasterLayout->addWidget(qlblMasterCount);
 
 
     QLabel* qlblConfirm = new QLabel("&Confirm");
@@ -33,7 +37,7 @@ Widget::Widget(QWidget *parent)
 
     QVBoxLayout* layout = new QVBoxLayout;
     layout->addWidget(qlblMaster);
-    layout->addWidget(qledMaster);
+    layout->addLayout(hbMasterLayout);
     layout->addWidget(qlblConfirm);
     layout->addWidget(qledConfirm);
     layout->addWidget(qlblWebSite);
@@ -50,3 +54,5 @@ Widget::~Widget()
 {
 
 }
+
+
