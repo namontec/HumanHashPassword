@@ -3,19 +3,20 @@
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {
-  Password* passMaster = new Password("&Master phrase");
+  passMaster_ = new Password("&Master phrase");
   Password* passConfirm = new Password("&Confirm");
 
   QLabel* qlblWebSite  = new QLabel("&Web Site");
-  QLineEdit* qledWebSite  = new QLineEdit;
-  qlblWebSite->setBuddy(qledWebSite);
+  qledWebSite_  = new QLineEdit;
+  qlblWebSite->setBuddy(qledWebSite_);
 
   QLabel* qlblResult = new QLabel("&Result");
-  QLineEdit* qledResult  = new QLineEdit;
-  qlblResult->setBuddy(qledResult);
+  editResult_  = new QLineEdit;
+  qlblResult->setBuddy(editResult_);
 
   QPushButton* qbtnGenerate = new QPushButton("Generate\n[Enter]");
   QPushButton* qbtnGenCopy = new QPushButton("Generate and copy\n[Ctrl+Enter]");
+  connect( qbtnGenerate, SIGNAL(clicked()), SLOT(slotGenerate()) );
 
   QHBoxLayout* buttonLayout = new QHBoxLayout;
   buttonLayout->addWidget(qbtnGenerate);
@@ -23,21 +24,35 @@ Widget::Widget(QWidget *parent)
 
 
   QVBoxLayout* layout = new QVBoxLayout;
-  layout->addWidget(passMaster);
+  layout->addWidget(passMaster_);
   layout->addWidget(passConfirm);
 
   layout->addWidget(qlblWebSite);
-  layout->addWidget(qledWebSite);
+  layout->addWidget(qledWebSite_);
 
   layout->addWidget(qlblResult);
-  layout->addWidget(qledResult);
+  layout->addWidget(editResult_);
   layout->addLayout(buttonLayout);
   layout->addStretch();
 
   this->setLayout(layout);
+
+  passGenerator_ = new PassGenerator;
+
 }
 
 Widget::~Widget()
+{
+  delete passGenerator_;
+}
+
+void Widget::slotGenerate()
+{
+  QString password = passGenerator_->GeneratePass(passMaster_->text(), qledWebSite_->text());
+  editResult_->setText(password);
+}
+
+void Widget::slotGenerateCopy()
 {
 
 }

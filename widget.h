@@ -4,6 +4,7 @@
 //#include <QWidget>
 #include <QtWidgets>
 #include "password.h"
+#include "passgenerator.h"
 
 class Widget : public QWidget
 {
@@ -13,6 +14,15 @@ public:
     Widget(QWidget *parent = 0);
     ~Widget();
 
+public slots:
+    void slotGenerate();
+    void slotGenerateCopy();
+
+private:
+    Password*       passMaster_;
+    QLineEdit*      qledWebSite_;
+    QLineEdit*      editResult_;
+    PassGenerator*  passGenerator_;
 };
 
 #endif // WIDGET_H

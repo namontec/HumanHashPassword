@@ -7,6 +7,7 @@ class Password : public QWidget
   Q_OBJECT
 public:
   explicit Password(QString caption, QWidget *parent = nullptr);
+  QString text();
 
 signals:
 

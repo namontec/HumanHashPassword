@@ -25,6 +25,11 @@ Password::Password(QString caption, QWidget *parent) : QWidget(parent)
   this->setLayout(layout);
 }
 
+QString Password::text()
+{
+  return lineEdit_->text();
+}
+
 void Password::slotWriteLength()
 {
   int passLength = lineEdit_->text().length();
