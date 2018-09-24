@@ -26,12 +26,12 @@ SOURCES += \
         main.cpp \
         widget.cpp \
     passgenerator.cpp \
-    qlabelcounter.cpp
+    password.cpp
 
 HEADERS += \
         widget.h \
     passgenerator.h \
-    qlabelcounter.h
+    password.h
 
 CONFIG += mobility
 MOBILITY = 

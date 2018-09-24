@@ -3,7 +3,7 @@
 
 //#include <QWidget>
 #include <QtWidgets>
-#include "qlabelcounter.h"
+#include "password.h"
 
 class Widget : public QWidget
 {
