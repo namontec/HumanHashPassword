@@ -4,7 +4,7 @@ Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {
   passMaster_ = new Password("&Master phrase");
-  Password* passConfirm = new Password("&Confirm");
+  Password* passConfirm = new Password("Co&nfirm");
 
   QLabel* qlblWebSite  = new QLabel("&Web Site");
   qledWebSite_  = new QLineEdit;
@@ -14,8 +14,8 @@ Widget::Widget(QWidget *parent)
   editResult_  = new QLineEdit;
   qlblResult->setBuddy(editResult_);
 
-  QPushButton* qbtnGenerate = new QPushButton("Generate\n[Enter]");
-  QPushButton* qbtnGenCopy = new QPushButton("Generate and copy\n[Ctrl+Enter]");
+  QPushButton* qbtnGenerate = new QPushButton("&Generate");
+  QPushButton* qbtnGenCopy = new QPushButton("Generate and &copy");
   connect( qbtnGenerate, SIGNAL(clicked()), SLOT(slotGenerate()) );
 
   QHBoxLayout* buttonLayout = new QHBoxLayout;
