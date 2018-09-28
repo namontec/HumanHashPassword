@@ -24,14 +24,14 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        widget.cpp \
-    passgenerator.cpp \
-    password.cpp
+    PasswordWidget.cpp \
+    MainWindow.cpp \
+    PassGenerator.cpp
 
 HEADERS += \
-        widget.h \
-    passgenerator.h \
-    password.h
+    PasswordWidget.h \
+    MainWindow.h \
+    PassGenerator.h
 
 CONFIG += mobility
 MOBILITY = 

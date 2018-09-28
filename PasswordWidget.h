@@ -2,11 +2,11 @@
 
 #include <QtWidgets>
 
-class Password : public QWidget
+class PasswordWidget : public QWidget
 {
   Q_OBJECT
 public:
-  explicit Password(QString caption, QWidget *parent = nullptr);
+  explicit PasswordWidget(QString caption, QWidget *parent = nullptr);
   QString text();
 
 signals:

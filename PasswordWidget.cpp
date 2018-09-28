@@ -1,6 +1,6 @@
-#include "password.h"
+#include "PasswordWidget.h"
 
-Password::Password(QString caption, QWidget *parent) : QWidget(parent)
+PasswordWidget::PasswordWidget(QString caption, QWidget *parent) : QWidget(parent)
 {
   QLabel* label  = new QLabel(caption);
   lineEdit_  = new QLineEdit;
@@ -25,12 +25,12 @@ Password::Password(QString caption, QWidget *parent) : QWidget(parent)
   this->setLayout(layout);
 }
 
-QString Password::text()
+QString PasswordWidget::text()
 {
   return lineEdit_->text();
 }
 
-void Password::slotWriteLength()
+void PasswordWidget::slotWriteLength()
 {
   int passLength = lineEdit_->text().length();
   labelCounter_->setText(QString::number(passLength));

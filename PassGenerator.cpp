@@ -1,4 +1,4 @@
-#include "passgenerator.h"
+#include "PassGenerator.h"
 
 using namespace std;
 

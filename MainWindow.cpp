@@ -1,10 +1,10 @@
-#include "widget.h"
+#include "MainWindow.h"
 
-Widget::Widget(QWidget *parent)
+MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
-  passMaster_ = new Password("&Master phrase");
-  Password* passConfirm = new Password("Co&nfirm");
+  passMaster_ = new PasswordWidget("&Master phrase");
+  PasswordWidget* passConfirm = new PasswordWidget("Co&nfirm");
 
   QLabel* qlblWebSite  = new QLabel("&Web Site");
   qledWebSite_  = new QLineEdit;
@@ -41,18 +41,18 @@ Widget::Widget(QWidget *parent)
 
 }
 
-Widget::~Widget()
+MainWindow::~MainWindow()
 {
   delete passGenerator_;
 }
 
-void Widget::slotGenerate()
+void MainWindow::slotGenerate()
 {
   QString password = passGenerator_->GeneratePass(passMaster_->text(), qledWebSite_->text());
   editResult_->setText(password);
 }
 
-void Widget::slotGenerateCopy()
+void MainWindow::slotGenerateCopy()
 {
 
 }

@@ -3,23 +3,23 @@
 
 //#include <QWidget>
 #include <QtWidgets>
-#include "password.h"
-#include "passgenerator.h"
+#include "PasswordWidget.h"
+#include "PassGenerator.h"
 
-class Widget : public QWidget
+class MainWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    Widget(QWidget *parent = 0);
-    ~Widget();
+    MainWindow(QWidget *parent = 0);
+    ~MainWindow();
 
 public slots:
     void slotGenerate();
     void slotGenerateCopy();
 
 private:
-    Password*       passMaster_;
+    PasswordWidget*       passMaster_;
     QLineEdit*      qledWebSite_;
     QLineEdit*      editResult_;
     PassGenerator*  passGenerator_;
