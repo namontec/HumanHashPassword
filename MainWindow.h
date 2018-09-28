@@ -21,7 +21,7 @@ public slots:
   void slotGenerateCopy();
 
 private:
-  bool checkEqualPhrase();
+  bool checkPhrase();
 
 
 private:

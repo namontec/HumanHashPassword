@@ -61,7 +61,7 @@ void MainWindow::showWarning(QString warningMessage)
 
 void MainWindow::slotGenerate()
 {
-  if (checkEqualPhrase()){
+  if (checkPhrase()){
     QString password = passGenerator_->GeneratePass(passMaster_->text(), qledWebSite_->text());
     editResult_->setText(password);
   }
@@ -71,22 +71,32 @@ void MainWindow::slotGenerate()
 
 void MainWindow::slotGenerateCopy()
 {
-  if (checkEqualPhrase()){
+  if (checkPhrase()){
     QString password = passGenerator_->GeneratePass(passMaster_->text(), qledWebSite_->text());
-    editResult_->setText(password);
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(password);
+    editResult_->setText("<Copied to clipboard>");
   }
 }
 
 
 
-bool MainWindow::checkEqualPhrase()
+bool MainWindow::checkPhrase()
 {
   bool phrasesEqual = ( passMaster_->text() == passConfirm_->text() );
+  bool phraseZero   = ( passMaster_->text().length() == 0 );
   if (!phrasesEqual) {
     showWarning("Phrases are not equal");
     return false;
   }
+  else if (phraseZero){
+    showWarning("Empty phrase is not secure");
+    return false;
+  }
   else return true;
 }
+
+
+
 
 
