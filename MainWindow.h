@@ -8,21 +8,28 @@
 
 class MainWindow : public QWidget
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+  MainWindow(QWidget *parent = 0);
+  ~MainWindow();
+  void showWarning(QString warninMessage);
+
 
 public slots:
-    void slotGenerate();
-    void slotGenerateCopy();
+  void slotGenerate();
+  void slotGenerateCopy();
 
 private:
-    PasswordWidget*       passMaster_;
-    QLineEdit*      qledWebSite_;
-    QLineEdit*      editResult_;
-    PassGenerator*  passGenerator_;
+  bool checkEqualPhrase();
+
+
+private:
+  PasswordWidget* passMaster_;
+  PasswordWidget* passConfirm_;
+  QLineEdit*      qledWebSite_;
+  QLineEdit*      editResult_;
+  PassGenerator*  passGenerator_;
 };
 
 #endif // WIDGET_H

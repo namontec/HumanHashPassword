@@ -3,8 +3,8 @@
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
-  passMaster_ = new PasswordWidget("&Master phrase");
-  PasswordWidget* passConfirm = new PasswordWidget("Co&nfirm");
+  passMaster_  = new PasswordWidget("&Master phrase");
+  passConfirm_ = new PasswordWidget("Co&nfirm");
 
   QLabel* qlblWebSite  = new QLabel("&Web Site");
   qledWebSite_  = new QLineEdit;
@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
   QPushButton* qbtnGenerate = new QPushButton("&Generate");
   QPushButton* qbtnGenCopy = new QPushButton("Generate and &copy");
   connect( qbtnGenerate, SIGNAL(clicked()), SLOT(slotGenerate()) );
+  connect( qbtnGenCopy,  SIGNAL(clicked()), SLOT(slotGenerateCopy()) );
 
   QHBoxLayout* buttonLayout = new QHBoxLayout;
   buttonLayout->addWidget(qbtnGenerate);
@@ -25,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   QVBoxLayout* layout = new QVBoxLayout;
   layout->addWidget(passMaster_);
-  layout->addWidget(passConfirm);
+  layout->addWidget(passConfirm_);
 
   layout->addWidget(qlblWebSite);
   layout->addWidget(qledWebSite_);
@@ -41,20 +42,51 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
+
+
 MainWindow::~MainWindow()
 {
   delete passGenerator_;
 }
 
+
+
+void MainWindow::showWarning(QString warningMessage)
+{
+  QWidget *sender = qobject_cast<QWidget*>( QObject::sender() );
+  QToolTip::showText( sender->mapToGlobal( QPoint( 0, 0 ) ), warningMessage );
+}
+
+
+
 void MainWindow::slotGenerate()
 {
-  QString password = passGenerator_->GeneratePass(passMaster_->text(), qledWebSite_->text());
-  editResult_->setText(password);
+  if (checkEqualPhrase()){
+    QString password = passGenerator_->GeneratePass(passMaster_->text(), qledWebSite_->text());
+    editResult_->setText(password);
+  }
 }
+
+
 
 void MainWindow::slotGenerateCopy()
 {
+  if (checkEqualPhrase()){
+    QString password = passGenerator_->GeneratePass(passMaster_->text(), qledWebSite_->text());
+    editResult_->setText(password);
+  }
+}
 
+
+
+bool MainWindow::checkEqualPhrase()
+{
+  bool phrasesEqual = ( passMaster_->text() == passConfirm_->text() );
+  if (!phrasesEqual) {
+    showWarning("Phrases are not equal");
+    return false;
+  }
+  else return true;
 }
 
 
