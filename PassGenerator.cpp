@@ -256,12 +256,9 @@ void PassGenerator::CreateWord(QString &out, quint64 num)
       prefix = empty_prefix;// defensive, they were filtered out
       continue;
     }
-    cout << "ary.size=" << ary->size() << ", num=" << num << "|" << static_cast<int>(num) << endl;
 
     quint64 idx = num % static_cast<quint64>(ary->size());
     num /= static_cast<quint64>(ary->size());
-
-    cout << "idx=" << idx << ", num=" << num << endl;
 
     QString syllable = ary->at( static_cast<int>(idx) );
     out += syllable;

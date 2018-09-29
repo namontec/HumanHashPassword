@@ -26,7 +26,7 @@ private:
   QLineEdit*  lineEdit_;
   QLabel*     labelCounter_;
   int         timerInterval_;
-  int         timerId_;
+  int         timerId_ = 0;
 };
 
 
