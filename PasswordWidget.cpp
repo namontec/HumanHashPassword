@@ -1,18 +1,21 @@
 #include "PasswordWidget.h"
 
-PasswordWidget::PasswordWidget(QString caption, QWidget *parent) : QWidget(parent)
+PasswordWidget::PasswordWidget(QString caption, bool hideText, int timerInterval, QWidget *parent)
+  : QWidget(parent), timerInterval_(timerInterval)
 {
   QLabel* label  = new QLabel(caption);
   lineEdit_  = new QLineEdit;
   labelCounter_ = new QLabel("0");
-//  QProgressBar* progressBar = new QProgressBar;
-
-//  qprbMaster->setRange(0, 11);
-//  qprbMaster->resize(0,2);
 
   label->setBuddy(lineEdit_);
-  lineEdit_->setEchoMode(QLineEdit::Password);
+  if (hideText) {
+      lineEdit_->setEchoMode(QLineEdit::Password);
+  }
+
   connect(lineEdit_, SIGNAL(textChanged(QString)), SLOT(slotWriteLength()) );
+  if (timerInterval != 0) {
+  connect(lineEdit_, SIGNAL(textChanged(QString)), SLOT(slotStartClearTimer()) );
+  }
 
   QHBoxLayout* lineEditLayout = new QHBoxLayout;
   lineEditLayout->addWidget(lineEdit_);
@@ -25,13 +28,46 @@ PasswordWidget::PasswordWidget(QString caption, QWidget *parent) : QWidget(paren
   this->setLayout(layout);
 }
 
+
+
 QString PasswordWidget::text()
 {
   return lineEdit_->text();
 }
 
+
+
+void PasswordWidget::setText(QString text)
+{
+  lineEdit_->setText(text);
+}
+
+
+
 void PasswordWidget::slotWriteLength()
 {
   int passLength = lineEdit_->text().length();
   labelCounter_->setText(QString::number(passLength));
+}
+
+
+
+void PasswordWidget::slotStartClearTimer()
+{
+  if (timerId_ != 0) {
+    killTimer(timerId_);
+    timerId_ = 0;
+  }
+  if (timerInterval_ != 0) {
+    timerId_ = startTimer(timerInterval_);
+  }
+}
+
+
+
+void PasswordWidget::timerEvent(QTimerEvent *tEvent)
+{
+  lineEdit_->clear();
+  killTimer(timerId_);
+  timerId_ = 0;
 }

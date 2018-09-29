@@ -27,8 +27,8 @@ private:
 private:
   PasswordWidget* passMaster_;
   PasswordWidget* passConfirm_;
-  QLineEdit*      qledWebSite_;
-  QLineEdit*      editResult_;
+  PasswordWidget* qledWebSite_;
+  PasswordWidget* editResult_;
   PassGenerator*  passGenerator_;
 };
 

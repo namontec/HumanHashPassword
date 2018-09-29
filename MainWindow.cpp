@@ -3,16 +3,10 @@
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
-  passMaster_  = new PasswordWidget("&Master phrase");
-  passConfirm_ = new PasswordWidget("Co&nfirm");
-
-  QLabel* qlblWebSite  = new QLabel("&Web Site");
-  qledWebSite_  = new QLineEdit;
-  qlblWebSite->setBuddy(qledWebSite_);
-
-  QLabel* qlblResult = new QLabel("&Result");
-  editResult_  = new QLineEdit;
-  qlblResult->setBuddy(editResult_);
+  passMaster_  = new PasswordWidget("&Master phrase", true, 5 * 60 * 1000);
+  passConfirm_ = new PasswordWidget("Co&nfirm", true, 5 * 60 * 1000);
+  qledWebSite_ = new PasswordWidget("&Web Site", false);
+  editResult_  = new PasswordWidget("&Result", false, 10 * 1000);
 
   QPushButton* qbtnGenerate = new QPushButton("&Generate");
   QPushButton* qbtnGenCopy = new QPushButton("Generate and &copy");
@@ -23,15 +17,10 @@ MainWindow::MainWindow(QWidget *parent)
   buttonLayout->addWidget(qbtnGenerate);
   buttonLayout->addWidget(qbtnGenCopy);
 
-
   QVBoxLayout* layout = new QVBoxLayout;
   layout->addWidget(passMaster_);
   layout->addWidget(passConfirm_);
-
-  layout->addWidget(qlblWebSite);
   layout->addWidget(qledWebSite_);
-
-  layout->addWidget(qlblResult);
   layout->addWidget(editResult_);
   layout->addLayout(buttonLayout);
   layout->addStretch();
@@ -39,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent)
   this->setLayout(layout);
 
   passGenerator_ = new PassGenerator;
-
 }
 
 
