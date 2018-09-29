@@ -51,6 +51,16 @@ void PasswordWidget::setPlaceholderText(QString placeholder)
 
 
 
+void PasswordWidget::killClearTimer()
+{
+  if (timerId_ != 0) {
+    killTimer(timerId_);
+    timerId_ = 0;
+  }
+}
+
+
+
 void PasswordWidget::slotWriteLength()
 {
   int passLength = lineEdit_->text().length();
@@ -61,10 +71,8 @@ void PasswordWidget::slotWriteLength()
 
 void PasswordWidget::slotStartClearTimer()
 {
-  if (timerId_ != 0) {
-    killTimer(timerId_);
-    timerId_ = 0;
-  }
+  killClearTimer();
+
   if (timerInterval_ != 0) {
     timerId_ = startTimer(timerInterval_);
   }

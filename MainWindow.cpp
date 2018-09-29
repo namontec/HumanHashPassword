@@ -65,6 +65,7 @@ void MainWindow::slotGenerateCopy()
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setText(password);
     editResult_->setText("<Copied to clipboard>");
+    editResult_->killClearTimer();
   }
 }
 

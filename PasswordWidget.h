@@ -10,6 +10,7 @@ public:
   QString   text();
   void      setText(QString text);
   void      setPlaceholderText(QString placeholder);
+  void      killClearTimer();
 
 signals:
 
