@@ -9,6 +9,7 @@ public:
   explicit  PasswordWidget(QString caption, bool hideText = false, int timerInterval = 0, QWidget *parent = nullptr);
   QString   text();
   void      setText(QString text);
+  void      setPlaceholderText(QString placeholder);
 
 signals:
 

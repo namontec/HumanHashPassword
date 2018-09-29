@@ -4,6 +4,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
   passMaster_  = new PasswordWidget("&Master phrase", true, 5 * 60 * 1000);
+  passMaster_->setPlaceholderText("More than 11 symbols");
   passConfirm_ = new PasswordWidget("Co&nfirm", true, 5 * 60 * 1000);
   qledWebSite_ = new PasswordWidget("&Web Site", false);
   editResult_  = new PasswordWidget("&Result", false, 10 * 1000);

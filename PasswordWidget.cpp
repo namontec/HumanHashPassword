@@ -44,6 +44,13 @@ void PasswordWidget::setText(QString text)
 
 
 
+void PasswordWidget::setPlaceholderText(QString placeholder)
+{
+  lineEdit_->setPlaceholderText(placeholder);
+}
+
+
+
 void PasswordWidget::slotWriteLength()
 {
   int passLength = lineEdit_->text().length();
