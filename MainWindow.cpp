@@ -3,14 +3,14 @@
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
-  passMaster_  = new PasswordWidget("&Master phrase", true, 5 * 60 * 1000);
+  passMaster_  = new PasswordWidget("Master phrase", true, 5 * 60 * 1000);
   passMaster_->setPlaceholderText("More than 11 symbols");
-  passConfirm_ = new PasswordWidget("Co&nfirm", true, 5 * 60 * 1000);
-  qledWebSite_ = new PasswordWidget("&Web Site", false);
-  editResult_  = new PasswordWidget("&Result", false, 10 * 1000);
+  passConfirm_ = new PasswordWidget("Confirm", true, 5 * 60 * 1000);
+  qledWebSite_ = new PasswordWidget("Web Site", false);
+  editResult_  = new PasswordWidget("Result", false, 10 * 1000);
 
-  QPushButton* qbtnGenerate = new QPushButton("&Generate");
-  QPushButton* qbtnGenCopy = new QPushButton("Generate and &copy");
+  QPushButton* qbtnGenerate = new QPushButton("Generate");
+  QPushButton* qbtnGenCopy = new QPushButton("Generate and copy");
   connect( qbtnGenerate, SIGNAL(clicked()), SLOT(slotGenerate()) );
   connect( qbtnGenCopy,  SIGNAL(clicked()), SLOT(slotGenerateCopy()) );
 
