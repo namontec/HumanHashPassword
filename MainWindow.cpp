@@ -4,15 +4,26 @@ MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
   passMaster_  = new PasswordWidget("Master phrase", true, 5 * 60 * 1000);
-  passMaster_->setPlaceholderText("More than 11 symbols");
-  passConfirm_ = new PasswordWidget("Confirm", true, 5 * 60 * 1000);
+  passMaster_->setPlaceholderText("11 symbols or more");
+  passConfirm_ = new PasswordWidget("Confirm phrase", true, 5 * 60 * 1000);
   qledWebSite_ = new PasswordWidget("Web Site", false);
-  editResult_  = new PasswordWidget("Result", false, 10 * 1000);
+  editResult_  = new PasswordWidget("Password", false, 10 * 1000);
+  connect( passMaster_,  SIGNAL(pressedEnter()),     SLOT(slotGenerate()) );
+  connect( passMaster_,  SIGNAL(pressedCtrlEnter()), SLOT(slotGenerateCopy()) );
+  connect( passConfirm_, SIGNAL(pressedEnter()),     SLOT(slotGenerate()) );
+  connect( passConfirm_, SIGNAL(pressedCtrlEnter()), SLOT(slotGenerateCopy()) );
+  connect( qledWebSite_, SIGNAL(pressedEnter()),     SLOT(slotGenerate()) );
+  connect( qledWebSite_, SIGNAL(pressedCtrlEnter()), SLOT(slotGenerateCopy()) );
+  connect( editResult_,  SIGNAL(pressedEnter()),     SLOT(slotGenerate()) );
+  connect( editResult_,  SIGNAL(pressedCtrlEnter()), SLOT(slotGenerateCopy()) );
 
   QPushButton* qbtnGenerate = new QPushButton("Generate");
+  qbtnGenerate->setToolTip("Enter");
   QPushButton* qbtnGenCopy = new QPushButton("Generate and copy");
+  qbtnGenCopy->setToolTip(("Ctrl + Enter"));
   connect( qbtnGenerate, SIGNAL(clicked()), SLOT(slotGenerate()) );
   connect( qbtnGenCopy,  SIGNAL(clicked()), SLOT(slotGenerateCopy()) );
+
 
   QHBoxLayout* buttonLayout = new QHBoxLayout;
   buttonLayout->addWidget(qbtnGenerate);
@@ -43,7 +54,7 @@ MainWindow::~MainWindow()
 void MainWindow::showWarning(QString warningMessage)
 {
   QWidget *sender = qobject_cast<QWidget*>( QObject::sender() );
-  QToolTip::showText( sender->mapToGlobal( QPoint( 0, 0 ) ), warningMessage );
+  QToolTip::showText( sender->mapToGlobal( QPoint( 0, sender->height() / 2) ), warningMessage );
 }
 
 

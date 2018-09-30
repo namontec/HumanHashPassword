@@ -86,3 +86,21 @@ void PasswordWidget::timerEvent(QTimerEvent *tEvent)
   killTimer(timerId_);
   timerId_ = 0;
 }
+
+
+
+void PasswordWidget::keyPressEvent(QKeyEvent *keyEvent)
+{
+  switch (keyEvent->key()) {
+  case Qt::Key_Return:
+    if (keyEvent->modifiers() & Qt::ControlModifier) {
+      emit pressedCtrlEnter();
+    }
+    else {
+      emit pressedEnter();
+    }
+    break;
+  default:
+    QWidget::keyPressEvent(keyEvent);
+  }
+}

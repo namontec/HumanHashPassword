@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QtWidgets>
+#include <iostream>
 
 class PasswordWidget : public QWidget
 {
@@ -13,6 +14,8 @@ public:
   void      killClearTimer();
 
 signals:
+  void      pressedEnter();
+  void      pressedCtrlEnter();
 
 public slots:
   void      slotWriteLength();
@@ -20,6 +23,7 @@ public slots:
 
 protected:
   virtual void timerEvent(QTimerEvent* tEvent);
+  virtual void keyPressEvent(QKeyEvent *keyEvent);
 
 private:
 //  QProgressBar progressBar_;
