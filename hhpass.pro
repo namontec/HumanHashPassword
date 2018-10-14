@@ -54,3 +54,6 @@ DISTFILES += \
     icon.ico
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+
+
+RC_ICONS = icon.ico
