@@ -23,6 +23,11 @@ public slots:
 private:
   bool checkPhrase();
 
+private slots:
+  void slotAbout();
+  void slotAboutQt();
+  void slotClearAll();
+  void slotExit();
 
 private:
   PasswordWidget* passMaster_;

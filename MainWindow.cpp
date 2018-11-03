@@ -3,14 +3,18 @@
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
-  QMenuBar* mnuBar = new QMenuBar();
-  QMenu*    mnuMain = new QMenu("&Menu");
-  mnuMain->addAction("About &Qt", this, SLOT(aboutQt()), Qt::CTRL + Qt::Key_Q);
+  QMenuBar* mnuBar   = new QMenuBar();
+  QMenu*    mnuMain  = new QMenu("&Menu");
+  mnuMain->addAction("&Clear all", this, SLOT(slotClearAll()) );
   mnuMain->addSeparator();
-  mnuMain->addSeparator();
-  mnuMain->addAction("E&xit", this, SLOT(quit()));
+  mnuMain->addAction("E&xit", this, SLOT(slotExit()) );
+
+  QMenu*    mnuAbout = new QMenu("&About");
+  mnuAbout->addAction("&About", this, SLOT(slotAbout()) );
+  mnuAbout->addAction("About &Qt", this, SLOT(slotAboutQt()), Qt::CTRL + Qt::Key_Q);
 
   mnuBar->addMenu(mnuMain);
+  mnuBar->addMenu(mnuAbout);
 
   passMaster_  = new PasswordWidget("Master phrase", true, 5 * 60 * 1000);
   passMaster_->setPlaceholderText("11 symbols or more");
@@ -48,7 +52,6 @@ MainWindow::MainWindow(QWidget *parent)
   layout->addStretch();
 
   this->setLayout(layout);
-  //this->layout()->setMenuBar(mnuBar);
 
   passGenerator_ = new PassGenerator;
 }
@@ -106,6 +109,30 @@ bool MainWindow::checkPhrase()
     return false;
   }
   else return true;
+}
+
+void MainWindow::slotAbout()
+{
+  QString version = QString("%1.%2.%3").arg(VERSION_MAJOR).arg(VERSION_MINOR).arg(VERSION_BUILD);
+  QMessageBox::about(this, "About", "Human Hash Password Generator\nVersion: " + version);
+}
+
+void MainWindow::slotAboutQt()
+{
+  QMessageBox::aboutQt(this);
+}
+
+void MainWindow::slotClearAll()
+{
+  passMaster_->setText("");
+  passConfirm_->setText("");
+  qledWebSite_->setText("");
+  editResult_->setText("");
+}
+
+void MainWindow::slotExit()
+{
+  QApplication::exit();
 }
 
 
