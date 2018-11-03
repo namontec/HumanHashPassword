@@ -3,6 +3,15 @@
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
 {
+  QMenuBar* mnuBar = new QMenuBar();
+  QMenu*    mnuMain = new QMenu("&Menu");
+  mnuMain->addAction("About &Qt", this, SLOT(aboutQt()), Qt::CTRL + Qt::Key_Q);
+  mnuMain->addSeparator();
+  mnuMain->addSeparator();
+  mnuMain->addAction("E&xit", this, SLOT(quit()));
+
+  mnuBar->addMenu(mnuMain);
+
   passMaster_  = new PasswordWidget("Master phrase", true, 5 * 60 * 1000);
   passMaster_->setPlaceholderText("11 symbols or more");
   passConfirm_ = new PasswordWidget("Confirm phrase", true, 5 * 60 * 1000);
@@ -30,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
   buttonLayout->addWidget(qbtnGenCopy);
 
   QVBoxLayout* layout = new QVBoxLayout;
+  layout->setMenuBar(mnuBar);
   layout->addWidget(passMaster_);
   layout->addWidget(passConfirm_);
   layout->addWidget(qledWebSite_);
@@ -38,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
   layout->addStretch();
 
   this->setLayout(layout);
+  //this->layout()->setMenuBar(mnuBar);
 
   passGenerator_ = new PassGenerator;
 }
