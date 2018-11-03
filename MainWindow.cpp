@@ -5,13 +5,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
   QMenuBar* mnuBar   = new QMenuBar();
   QMenu*    mnuMain  = new QMenu("&Menu");
-  mnuMain->addAction("&Clear all", this, SLOT(slotClearAll()) );
+  mnuMain->addAction("Cl&ear all", this, SLOT(slotClearAll()), Qt::CTRL + Qt::Key_E);
   mnuMain->addSeparator();
-  mnuMain->addAction("E&xit", this, SLOT(slotExit()) );
+  mnuMain->addAction("E&xit", this, SLOT(slotExit()), Qt::CTRL + Qt::Key_Q);
 
   QMenu*    mnuAbout = new QMenu("&About");
   mnuAbout->addAction("&About", this, SLOT(slotAbout()) );
-  mnuAbout->addAction("About &Qt", this, SLOT(slotAboutQt()), Qt::CTRL + Qt::Key_Q);
+  mnuAbout->addAction("About &Qt", this, SLOT(slotAboutQt()) );
 
   mnuBar->addMenu(mnuMain);
   mnuBar->addMenu(mnuAbout);
