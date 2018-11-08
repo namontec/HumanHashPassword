@@ -7,10 +7,10 @@ class PasswordWidget : public QWidget
 {
   Q_OBJECT
 public:
-  explicit  PasswordWidget(QString caption, bool hideText = false, int timerInterval = 0, QWidget *parent = nullptr);
+  explicit  PasswordWidget(const QString& caption, bool hideText = false, int timerInterval = 0, QWidget *parent = nullptr);
   QString   text();
-  void      setText(QString text);
-  void      setPlaceholderText(QString placeholder);
+  void      setText(const QString& text);
+  void      setPlaceholderText(const QString& placeholder);
   void      killClearTimer();
 
 signals:

@@ -1,6 +1,6 @@
 #include "PasswordWidget.h"
 
-PasswordWidget::PasswordWidget(QString caption, bool hideText, int timerInterval, QWidget *parent)
+PasswordWidget::PasswordWidget(const QString& caption, bool hideText, int timerInterval, QWidget *parent)
   : QWidget(parent), timerInterval_(timerInterval)
 {
   QLabel* label  = new QLabel(caption);
@@ -37,14 +37,14 @@ QString PasswordWidget::text()
 
 
 
-void PasswordWidget::setText(QString text)
+void PasswordWidget::setText(const QString& text)
 {
   lineEdit_->setText(text);
 }
 
 
 
-void PasswordWidget::setPlaceholderText(QString placeholder)
+void PasswordWidget::setPlaceholderText(const QString& placeholder)
 {
   lineEdit_->setPlaceholderText(placeholder);
 }
