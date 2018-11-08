@@ -65,7 +65,7 @@ MainWindow::~MainWindow()
 
 
 
-void MainWindow::showWarning(QString warningMessage)
+void MainWindow::showWarning(const QString& warningMessage)
 {
   QWidget *sender = qobject_cast<QWidget*>( QObject::sender() );
   QToolTip::showText( sender->mapToGlobal( QPoint( 0, sender->height() / 2) ), warningMessage );

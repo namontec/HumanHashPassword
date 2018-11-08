@@ -222,7 +222,7 @@ PassGenerator::PassGenerator()
   map_.clear();
 
   for (int i = 0; i < mapList.size(); i++) {
-    QString currentLine = mapList.at(i);
+    const QString& currentLine = mapList.at(i);
     int semiconPosition = currentLine.indexOf(":");
     int afterSemicolonPosition = currentLine.size() - semiconPosition - 1;
 
