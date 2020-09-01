@@ -31,9 +31,14 @@ MainWindow::MainWindow(QWidget *parent)
   connect( editResult_,  SIGNAL(pressedCtrlEnter()), SLOT(slotGenerateCopy()) );
 
   QPushButton* qbtnGenerate = new QPushButton("Generate");
+  qbtnGenerate->setDefault(true);
   qbtnGenerate->setToolTip("Enter");
   QPushButton* qbtnGenCopy = new QPushButton("Generate and copy");
+#ifdef Q_OS_MACOS
+  qbtnGenCopy->setToolTip(("Command + Enter"));
+#else
   qbtnGenCopy->setToolTip(("Ctrl + Enter"));
+#endif
   connect( qbtnGenerate, SIGNAL(clicked()), SLOT(slotGenerate()) );
   connect( qbtnGenCopy,  SIGNAL(clicked()), SLOT(slotGenerateCopy()) );
 
